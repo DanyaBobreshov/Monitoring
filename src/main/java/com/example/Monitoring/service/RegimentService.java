@@ -28,7 +28,7 @@ public class RegimentService {
 
     public void correct(Regiment regiment, String address, String title, String divisionTitle){
         Division division = divisionRepo.findByTitle(divisionTitle).orElse(null);
-        regiment.setAddres(address);
+        regiment.setAddress(address);
         regiment.setTitle(title);
         regiment.setDivision(division);
     }
