@@ -15,7 +15,7 @@ public class Regiment {
     @Column(nullable = false, unique = true)
     private String title;
 
-    private String addres;
+    private String address;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
