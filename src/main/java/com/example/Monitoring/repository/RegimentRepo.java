@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface RegimentRepo extends JpaRepository<Regiment,Long> {
     List<Regiment> findByTitleContains(String title);
-    Optional<Regiment> findByTitle(String title);
+    DivisionRepo findByTitle(String title);
 }

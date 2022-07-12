@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class PerformerService {
     }
 
     public Performer findByName(String name){
-        return performerRepo.FindByName(name).orElse(null);
+        return performerRepo.findByName(name);
     }
 
     public void delete(Long id){

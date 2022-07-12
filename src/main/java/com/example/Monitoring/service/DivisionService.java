@@ -17,7 +17,7 @@ public class DivisionService {
 
     public List<Division> list(String  title){
         if(title!=null){
-            return divisionRepo.findByTittleContains(title);
+            return divisionRepo.findByTitleContains(title);
         }
         return divisionRepo.findAll();
     }
@@ -28,7 +28,7 @@ public class DivisionService {
 
     public void correct(Division division, String title, String TOSOfficerString){
         division.setTitle(title);
-        Performer TOSOfficer=performerRepo.FindByName(TOSOfficerString).orElse(null);
+        Performer TOSOfficer=performerRepo.findByName(TOSOfficerString);
         division.setTOSOfficer(TOSOfficer);
         save(division);
     }
@@ -37,7 +37,7 @@ public class DivisionService {
         return divisionRepo.findById(id).orElse(null);
     }
     public Division findByTitle(String title){
-        return divisionRepo.findByTitle(title).orElse(null);
+        return divisionRepo.findByTitle(title);
     }
     public void delete(Long id){
         Division division=divisionRepo.findById(id).orElse(null);

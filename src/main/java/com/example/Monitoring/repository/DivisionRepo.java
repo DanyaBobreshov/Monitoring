@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DivisionRepo extends JpaRepository<Division, Long> {
-    List<Division> findByTittleContains(String title);
-    Optional<Division> findByTitle(String title);
+    List<Division> findByTitleContains(String title);
+    Division findByTitle(String title);
 }

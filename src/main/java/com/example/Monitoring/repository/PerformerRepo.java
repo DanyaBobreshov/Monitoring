@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface PerformerRepo extends JpaRepository<Performer, Long> {
     List<Performer> findByNameContains (String name);
-    Optional<Performer> FindByName(String name);
+    Performer findByName(String name);
 }

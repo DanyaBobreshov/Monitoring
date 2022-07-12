@@ -27,7 +27,7 @@ public class RegimentService {
     }
 
     public void correct(Regiment regiment, String address, String title, String divisionTitle){
-        Division division = divisionRepo.findByTitle(divisionTitle).orElse(null);
+        Division division = divisionRepo.findByTitle(divisionTitle);
         regiment.setAddress(address);
         regiment.setTitle(title);
         regiment.setDivision(division);
@@ -38,7 +38,7 @@ public class RegimentService {
     }
 
     public Regiment findByTitle(String title){
-        return regimentRepo.findByTitle(title).orElse(null);
+        return (Regiment) regimentRepo.findByTitle(title);
     }
 
     public void delete(Long id){
