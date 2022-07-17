@@ -14,8 +14,8 @@
                     <th>${performer.name}</th>
                     <th>${performer.phoneNumber}</th>
                     <th>${performer.reservePhoneNumber}</th>
-                    <th><a href="/division/edit/${division.id}">Редактировние</a></th>
-                    <th><a href="/division/delete/${division.id}">Удаление</a></th>
+                    <th><a href="/performer/edit/${performer.id}">Редактировние</a></th>
+                    <th><a href="/performer/delete/${performer.id}">Удаление</a></th>
                 </tr>
                 <#else>
                 <h3>Исполнителей нет</h3>

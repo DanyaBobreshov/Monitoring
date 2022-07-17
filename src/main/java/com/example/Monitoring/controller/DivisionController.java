@@ -37,7 +37,7 @@ public class DivisionController {
         return "redirect:/divisions";
     }
 
-    @GetMapping("/divisions/edit/{id}")
+    @GetMapping("/division/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model, Principal principal){
         Division division=divisionService.findById(id);
         model.addAttribute("division", division);
@@ -54,7 +54,7 @@ public class DivisionController {
         return "redirect:/divisions";
     }
 
-    @GetMapping("division/deleet/{id}")
+    @GetMapping("division/delete/{id}")
     public String delete(@PathVariable("id")Long id){
         divisionService.delete(id);
         return "redirect:/divisions";

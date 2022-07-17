@@ -33,16 +33,16 @@ public class RegimentController {
                       @RequestParam("address") String address,
                       @RequestParam("division") String division){
         Regiment regiment = new Regiment();
-        regimentService.correct(regiment, title, address,division);
+        regimentService.correct(regiment, address, title,division);
         return "redirect:/regiments";
     }
 
-    @GetMapping("regiments/edit/{id}")
+    @GetMapping("regiment/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model, Principal principal){
         Regiment regiment=regimentService.findById(id);
         model.addAttribute("regiment", regiment);
         model.addAttribute("user", userService.getUserByPrincipal(principal));
-        return "regiments-edit";
+        return "regiment-edit";
     }
 
     @PostMapping("regiment/edit/regiment-edit/{id}")

@@ -12,7 +12,7 @@
               integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
               crossorigin="anonymous">
 
-        <title>Учет на складах и базах</title>
+        <title>Мониторинг технического состояния техники связи</title>
     </head>
     <body>
     <nav class="navbar navbar-dark bg-dark">

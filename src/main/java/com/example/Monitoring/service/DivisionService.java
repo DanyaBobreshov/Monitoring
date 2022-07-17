@@ -28,7 +28,7 @@ public class DivisionService {
 
     public void correct(Division division, String title, String TOSOfficerString){
         division.setTitle(title);
-        Performer TOSOfficer=performerRepo.findByName(TOSOfficerString);
+        Performer TOSOfficer=performerRepo.findByName(TOSOfficerString).orElse(null);
         division.setTOSOfficer(TOSOfficer);
         save(division);
     }
@@ -37,7 +37,7 @@ public class DivisionService {
         return divisionRepo.findById(id).orElse(null);
     }
     public Division findByTitle(String title){
-        return divisionRepo.findByTitle(title);
+        return divisionRepo.findByTitle(title).orElse(null);
     }
     public void delete(Long id){
         Division division=divisionRepo.findById(id).orElse(null);

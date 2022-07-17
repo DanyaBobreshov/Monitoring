@@ -1,25 +1,27 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template user>
-    <h1 style="text-align: center">ОВУ</h1><hr>
+    <h1 style="text-align: center">Войскоавя часть</h1><hr>
      <table class="table table-hover table-dark">
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Наименование</th>
-                    <th scope="col">Офицер ТОС</th>
+                    <th scope="col">адрес</th>
+                    <th scope="col">ОВУ</th>
                 </tr>
-                <#list divisions as division>
+                <#list regiments as regiment>
                 <tr>
-                    <th>${division.id}</th>
-                    <th>${division.title}</th>
-                    <th>${division.TOSOfficer.name}</th>
-                    <th><a href="/division/edit/${division.id}">Редактировние</a></th>
-                    <th><a href="/division/delete/${division.id}">Удаление</a></th>
+                    <th>${regiment.id}</th>
+                    <th>${regiment.title}</th>
+                    <th>${regiment.address}</th>
+                    <th>${regiment.division.title}</th>
+                    <th><a href="/regiment/edit/${regiment.id}">Редактировние</a></th>
+                    <th><a href="/regiment/delete/${regiment.id}">Удаление</a></th>
                 </tr>
                 <#else>
                 <h3>Организаций нет</h3>
             </#list>
             </table>
-    <form method="get" action="/divisions">
+    <form method="get" action="/regiments">
             <div class="form-group col-md-10">
                 <label for="searchWord">Поиск по организациям</label>
                 <input type="text" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control"
@@ -32,19 +34,24 @@
     <a class="btn btn-dark mt-3 mb-3" style="text-align: center; width: 100%"
        data-toggle="collapse" href="#collapseExample" role="button"
        aria-expanded="true" aria-controls="collapseExample">
-        Добавить новый ОВУ
+        Добавить в/ч
     </a>
     <div class="collapse mb-3" id="collapseExample" style="">
-        <form action="/divisions/add" method="post" enctype="multipart/form-data">
+        <form action="/regiments/add" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="divisionTitle">Наименование</label>
+                <label for="title">Наименование</label>
                 <input type="text" required class="form-control"
-                       id="divisionTitle" name="title">
+                       id="title" name="title">
             </div>
+            <div class="form-group">
+               <label for="address">Адрес</label>
+               <input type="text" required class="form-control"
+               id="address" name="address">
+                        </div>
              <div class="form-group">
-                <label for="TOSOfficer">Офицер ТОС</label>
+                <label for="division">ОВУ</label>
                 <input type="text" required class="form-control"
-                id="TOSOfficer" name="TOSOfficer">
+                id="division" name="division">
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -52,6 +59,5 @@
                         <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
         </form>
         <hr>
-            <a href="/performers">Добавить исполнителя</a></h2>
  </div>
    </@t.template>

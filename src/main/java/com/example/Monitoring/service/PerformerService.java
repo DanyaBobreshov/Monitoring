@@ -33,7 +33,7 @@ public class PerformerService {
     }
 
     public Performer findByName(String name){
-        return performerRepo.findByName(name);
+        return performerRepo.findByName(name).orElse(null);
     }
 
     public void delete(Long id){
