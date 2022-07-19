@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product, Long> {
     List<Product> findBySerialNumberContains(String SerialNumber);
+    List<Product> findByRegiment(String title);
 }

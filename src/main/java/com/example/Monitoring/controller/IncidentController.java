@@ -40,10 +40,13 @@ public class IncidentController {
     public String add(@RequestParam ("product") Long product,
                       @RequestParam (name="isGarant", required = false) Boolean isGarant,
                       @RequestParam ("description") String description,
-                      @RequestParam ("dateOfIncident") Date dateOfIncident){
+                      @RequestParam ("dateOfIncident") Date dateOfIncident,
+                      @RequestParam("industrial") String industrial,
+                      @RequestParam("document") String document){
         Incident incident = new Incident();
         if(isGarant==null) isGarant=false;
-        incidentService.correct(incident, product, isGarant, description, dateOfIncident.toLocalDate().atTime(12,0));
+        incidentService.correct(incident, product, isGarant, description, dateOfIncident.toLocalDate().atTime(12,0),
+                industrial, document);
         return "redirect:/incidents";
     }
 
@@ -60,9 +63,12 @@ public class IncidentController {
                        @RequestParam ("isGarant") Boolean isGarant,
                        @RequestParam ("description") String description,
                        @RequestParam ("dateOfIncident") Date dateOfIncident,
+                       @RequestParam("industrial") String industrial,
+                       @RequestParam("document") String document,
                        @PathVariable("id") Long id){
         Incident incident=incidentService.findById(id);
-        incidentService.correct(incident, product, isGarant, description, dateOfIncident.toLocalDate().atTime(12,0));
+        incidentService.correct(incident, product, isGarant, description, dateOfIncident.toLocalDate().atTime(12,0),
+                industrial, document);
         return "redirect:/incidents";
     }
 

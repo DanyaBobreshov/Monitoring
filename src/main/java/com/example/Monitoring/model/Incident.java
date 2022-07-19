@@ -21,4 +21,11 @@ public class Incident {
     private String description;
 
     private LocalDateTime dateOfIncident;
+
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn
+    private Industrial industrial;
+
+    private String document;
+
 }

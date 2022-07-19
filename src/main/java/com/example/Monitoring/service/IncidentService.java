@@ -2,6 +2,7 @@ package com.example.Monitoring.service;
 
 import com.example.Monitoring.model.Incident;
 import com.example.Monitoring.repository.IncidentRepo;
+import com.example.Monitoring.repository.IndustrialRepo;
 import com.example.Monitoring.repository.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.List;
 public class IncidentService {
     private final IncidentRepo incidentRepo;
     private final ProductRepo productRepo;
+    private final IndustrialRepo industrialRepo;
 
     public List<Incident>list(LocalDateTime dateTime){
         if(dateTime!=null){
@@ -27,11 +29,14 @@ public class IncidentService {
         incidentRepo.save(incident);
     }
 
-    public void correct(Incident incident, Long product, Boolean isGarant, String description, LocalDateTime dateTime){
+    public void correct(Incident incident, Long product, Boolean isGarant, String description,
+                        LocalDateTime dateTime, String industrial, String document){
         incident.setProduct(productRepo.findById(product).orElse(null));
         incident.setDescription(description);
         incident.setIsGarant(isGarant);
         incident.setDateOfIncident(dateTime);
+        incident.setIndustrial(industrialRepo.findByTitle(industrial).orElse(null));
+        incident.setDocument(document);
         save(incident);
     }
 
@@ -45,5 +50,7 @@ public class IncidentService {
     public Incident findById(Long id){
         return incidentRepo.findById(id).orElse(null);
     }
+
+
 
 }

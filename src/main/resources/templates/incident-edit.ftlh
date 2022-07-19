@@ -24,6 +24,16 @@
                               <input type="date" value="${incident.dateOfIncident}"required class="form-control"
                                      id="dateOfIncident" name="dateOfIncident">
                           </div>
+              <div class="form-group">
+                <label for="industrial">Предприятие</label>
+                <input type="text"  value="${incident.industrial.title}" required class="form-control"
+              id="industrial" name="industrial">
+             </div>
+              <div class="form-group">
+                <label for="document">Документы</label>
+                <input type="text"  value="${incident.document}" required class="form-control"
+              id="document" name="document">
+             </div>
                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                <button type="submit" style="width: 100%" class="btn btn-dark">Редактировать</button>
     </form>

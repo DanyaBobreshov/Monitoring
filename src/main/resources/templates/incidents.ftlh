@@ -9,6 +9,8 @@
                     <th scope="col">Гарантийное</th>
                     <th scope="col">Описание</th>
                     <th scope="col">Дата</th>
+                    <th scope="col">Предприятие</th>
+                    <th scope="col">Документ</th>
                 </tr>
                 <#list incidents as incident>
                 <tr>
@@ -18,6 +20,8 @@
                     <th>${incident.isGarant?c}</th>
                     <th>${incident.description}</th>
                     <th>${incident.dateOfIncident}</th>
+                    <th>${incident.industrial.title}</th>
+                    <th>${incident.document}</th>
                     <th><a href="/incident/edit/${incident.id}">Редактировние</a></th>
                     <th><a href="/incident/delete/${incident.id}">Удаление</a></th>
                 </tr>
@@ -27,7 +31,7 @@
             </table>
     <form method="get" action="/incidents">
             <div class="form-group col-md-10">
-                <label for="searchWord">Поиск по организациям</label>
+                <label for="searchWord">Поиск по дате</label>
                 <input type="date" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control"
                        id="searchWord">
             </div>
@@ -62,6 +66,16 @@
                   <input type="date" required class="form-control"
                          id="dateOfIncident" name="dateOfIncident">
               </div>
+              <div class="form-group">
+                <label for="industrial">Предприятие</label>
+                <input type="text" required class="form-control"
+              id="industrial" name="industrial">
+             </div>
+              <div class="form-group">
+                <label for="document">Документы</label>
+                <input type="text" required class="form-control"
+              id="document" name="document">
+             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
                         <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>

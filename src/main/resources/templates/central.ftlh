@@ -7,6 +7,7 @@
     <a href="/modelOfTechnicals">Модели изделий</a></h2><hr>
     <a href="/products">Изделия</a></h2><hr>
     <a href="/incidents">НЕИСПРАВНОСТИ</a></h2><hr>
+    <a href="/appFourMenu">Приложение 4</a></h2><hr>
     <a href="/registration">Регистрация</a></h2>
     <a href="/login">Вход</a></h2>
     </@t.template>
