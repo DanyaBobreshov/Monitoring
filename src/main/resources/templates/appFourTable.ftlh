@@ -26,4 +26,8 @@
     <form method="get" action="/appFourTable">
     </form>
     <hr>
+    <form action="/appFourTable/print" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <input type="submit" class="btn btn-light" value="ПЕЧАТЬ">
+                        </form>
        </@t.template>
