@@ -4,6 +4,7 @@ import com.example.Monitoring.model.Industrial;
 import com.example.Monitoring.service.IndustrialService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class IndustrialController {
     private final UserService userService;
     private final IndustrialService industrialService;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/industrials")
     public String industrials (@RequestParam (name = "searchWord", required = false) String title,
                                Principal principal, Model model){
@@ -28,6 +30,7 @@ public class IndustrialController {
         return "industrials";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("industrial/add")
     public String add(@RequestParam("title") String title,
                       @RequestParam("address") String address,
@@ -39,6 +42,7 @@ public class IndustrialController {
         return "redirect:/industrials";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("industrial/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model, Principal principal){
         Industrial industrial=industrialService.findById(id);
@@ -47,6 +51,7 @@ public class IndustrialController {
         return "industrial-edit";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("industrial/edit/industrial-edit/{id}")
     public String edit(@RequestParam ("title") String title,
                        @RequestParam("address") String address,
@@ -59,6 +64,7 @@ public class IndustrialController {
         return "redirect:/industrials";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("industrial/delete/{id}")
     public String delete(@PathVariable("id")Long id){
         industrialService.delete(id);

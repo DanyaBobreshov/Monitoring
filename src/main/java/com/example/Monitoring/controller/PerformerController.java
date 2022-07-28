@@ -4,6 +4,7 @@ import com.example.Monitoring.model.Performer;
 import com.example.Monitoring.service.PerformerService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class PerformerController {
     private final PerformerService performerService;
     private final UserService userService;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/performers")
     public String performers(@RequestParam (name = "SearchWord", required = false) String title,
                              Principal principal, Model model){
@@ -28,6 +30,7 @@ public class PerformerController {
         return "performers";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/performer/edit/{id}")
     public String performerEdit (@PathVariable("id") Long id,
                                  Model model, Principal principal){
@@ -37,6 +40,7 @@ public class PerformerController {
         return "performer-edit";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("performer/edit/performer-edit/{id}")
     public String performerEdit(
             @RequestParam("name")String name,
@@ -48,12 +52,14 @@ public class PerformerController {
     return "redirect:/performers";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("performer/add")
     public String add(Performer performer, Principal principal){
         performerService.save(performer);
         return "redirect:/performers";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("performer/delete/{id}")
     public String delete(@PathVariable("id") Long id){
         performerService.delete(id);

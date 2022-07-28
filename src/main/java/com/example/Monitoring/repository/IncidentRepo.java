@@ -25,4 +25,16 @@ public interface IncidentRepo extends JpaRepository<Incident, Long> {
     List<Incident> findByProductRegimentDivisionTitleContainsAndIsGarantFalse(String title);
     List<Incident> findByProductRegimentDivisionTitleContainsAndDateOfIncidentBeforeAndIsGarantTrue(String title, LocalDateTime dateBefore);
     List<Incident> findByProductRegimentDivisionTitleContainsAndDateOfIncidentBeforeAndIsGarantFalse(String title, LocalDateTime dateBefore);
+
+    List<Incident> findByDateOfIncidentContainsAndProductRegimentDivisionTitle(LocalDateTime dateTime, String divisionTitle);
+
+    List<Incident> findByProductModelOfTechnicalTitleContainsAndProductRegimentDivisionTitleContains(String title, String divisionTitle);
+    List<Incident> findByIndustrialTitleContainsAndProductRegimentDivisionTitleContains(String title, String divisionTitle);
+    List<Incident> findByIsGarantTrueAndProductRegimentDivisionTitleContains(String divisionTitle);
+    List<Incident> findByIsGarantFalseAndProductRegimentDivisionTitleContains(String divisionTitle);
+    List<Incident> findByProductModelOfTechnicalTitleContainsAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(String title, LocalDateTime dateBefore, String divisionTitle);
+    List<Incident> findByDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(LocalDateTime dateBefore, String divisionTitle);
+    List<Incident> findByIndustrialTitleContainsAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(String title, LocalDateTime dateBefore, String divisionTitle);
+    List<Incident> findByIsGarantTrueAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(LocalDateTime dateBefore, String divisionTitle);
+    List<Incident> findByIsGarantFalseAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(LocalDateTime dateBefore, String divisionTitle);
 }

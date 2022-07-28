@@ -4,6 +4,7 @@ import com.example.Monitoring.model.ModelOfTechnical;
 import com.example.Monitoring.service.ModelOfTechnicalService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class ModelOfTechnicalController {
         return "modelOfTechnicals";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("modelOfTechnical/add")
     public String add(@RequestParam ("title") String title,
                       @RequestParam ("description") String description){
@@ -36,6 +38,7 @@ public class ModelOfTechnicalController {
         return "redirect:/modelOfTechnicals";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("modelOfTechnical/edit/{id}")
     public String edit(@PathVariable ("id") Long id, Model model, Principal principal){
         ModelOfTechnical modelOfTechnical = modelOfTechnicalService.findById(id);
@@ -44,6 +47,7 @@ public class ModelOfTechnicalController {
         return "modelOfTechnical-edit";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("modelOfTechnical/edit/modelOfTechnical-edit/{id}")
     public String edit(@RequestParam("title") String title,
                        @RequestParam("description") String description,
@@ -53,6 +57,7 @@ public class ModelOfTechnicalController {
         return "redirect:/modelOfTechnicals";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("modelOfTechnical/delete/{id}")
     public String delete(@PathVariable("id") Long id){
         modelOfTechnicalService.findById(id);

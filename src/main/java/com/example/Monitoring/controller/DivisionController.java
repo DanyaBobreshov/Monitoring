@@ -4,6 +4,7 @@ import com.example.Monitoring.model.Division;
 import com.example.Monitoring.service.DivisionService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class DivisionController {
     private final DivisionService divisionService;
     private final UserService userService;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/divisions")
     public String divisions(@RequestParam (name="SearchWord", required = false)String title,
                             Principal principal, Model model){
@@ -27,7 +29,7 @@ public class DivisionController {
         model.addAttribute("searchWord", title);
         return "divisions";
     }
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/divisions/add")
     public String add(@RequestParam("title") String title,
                       @RequestParam("TOSOfficer") String TOSOfficerName,
@@ -37,6 +39,7 @@ public class DivisionController {
         return "redirect:/divisions";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/division/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model, Principal principal){
         Division division=divisionService.findById(id);
@@ -45,6 +48,7 @@ public class DivisionController {
         return "division-edit";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("division/edit/division-edit/{id}")
     public String edit(@RequestParam("title") String title,
                        @RequestParam("TOSOfficer") String TOSOfficerName,
@@ -54,6 +58,7 @@ public class DivisionController {
         return "redirect:/divisions";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("division/delete/{id}")
     public String delete(@PathVariable("id")Long id){
         divisionService.delete(id);

@@ -47,4 +47,12 @@ public class ProductService {
     public Product findById(Long id){
         return productRepo.findById(id).orElse(null);
     }
+
+    public List<Product> listByDivision(String title, String divisionTitle) {
+        if(title!=null){
+            return productRepo.findBySerialNumberContainsAndRegimentDivisionTitle(title, divisionTitle);
+        }else {
+            return productRepo.findByRegimentDivisionTitle(divisionTitle);
+        }
+    }
 }

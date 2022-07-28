@@ -52,5 +52,11 @@ public class IncidentService {
     }
 
 
-
+    public List<Incident> listDivision(LocalDateTime dateTime, String divisionTitle) {
+        if(dateTime!=null){
+            return incidentRepo.findByDateOfIncidentContainsAndProductRegimentDivisionTitle(dateTime, divisionTitle);
+        }else {
+            return incidentRepo.findByProductRegimentDivisionTitleContains(divisionTitle);
+        }
+    }
 }

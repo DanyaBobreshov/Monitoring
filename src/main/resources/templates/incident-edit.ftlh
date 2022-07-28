@@ -10,9 +10,8 @@
                         </div>
                          <div class="form-group">
                             <label for="isGarant">Гарантийный ремонт</label>
-                           <input type="checkbox" required class="form-control"
+                           <input type="checkbox" <#if isGarant??>value="${false}"</#if>
                            id="isGarant"  name="isGarant">
-                            </div>
                         </div>
                          <div class="form-group">
                              <label for="description">Описание</label>
@@ -33,6 +32,7 @@
                 <label for="document">Документы</label>
                 <input type="text"  value="${incident.document}" required class="form-control"
               id="document" name="document">
+             </div>
              </div>
                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                <button type="submit" style="width: 100%" class="btn btn-dark">Редактировать</button>

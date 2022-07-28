@@ -4,6 +4,7 @@ import com.example.Monitoring.service.AppFourTableService;
 import com.example.Monitoring.service.ExelWorkerService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class AppFourTableController {
         return "/appFourTable";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/appFourTable/print")
     public String print(){
         exelWorkerService.createBook();

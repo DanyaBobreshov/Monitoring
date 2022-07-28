@@ -15,6 +15,10 @@
             <label for="password">Пароль</label>
             <input type="password" class="form-control" id="password" required name="password">
         </div>
+         <div class="form-group">
+             <label for="divisionTitle">ОВУ</label>
+             <input type="divisionTitle" class="form-control" id="divisionTitle" required name="divisionTitle">
+         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <button type="submit" style="width: 100%" class="btn btn-dark">Зарегистрироваться</button>
     </form>

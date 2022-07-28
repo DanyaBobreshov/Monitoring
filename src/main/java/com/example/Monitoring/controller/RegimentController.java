@@ -4,6 +4,7 @@ import com.example.Monitoring.model.Regiment;
 import com.example.Monitoring.service.RegimentService;
 import com.example.Monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class RegimentController {
         return "regiments";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("regiments/add")
     public String add(@RequestParam("title") String title,
                       @RequestParam("address") String address,
@@ -37,6 +39,7 @@ public class RegimentController {
         return "redirect:/regiments";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("regiment/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model, Principal principal){
         Regiment regiment=regimentService.findById(id);
@@ -45,6 +48,7 @@ public class RegimentController {
         return "regiment-edit";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("regiment/edit/regiment-edit/{id}")
     public String edit(@RequestParam("title") String title,
                        @RequestParam("address") String address,
@@ -55,6 +59,7 @@ public class RegimentController {
         return "redirect:/regiments";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("regiment/delete/{id}")
     public String delete(@PathVariable("id")Long id){
         regimentService.delete(id);

@@ -78,4 +78,53 @@ public class AppFourMenuService {
     public List<Incident> listByNonGarantDate() {
         return incidentRepo.findByIsGarantFalseAndDateOfIncidentBefore(dateBefore);
     }
+
+    public List<Incident> listByProductsDivision(String title, String divisionTitle) {
+        if(title!=null){
+            return incidentRepo.findByProductModelOfTechnicalTitleContainsAndProductRegimentDivisionTitleContains(title, divisionTitle);
+        }else {
+            return incidentRepo.findByProductRegimentDivisionTitleContains(divisionTitle);
+        }
+    }
+
+    public List<Incident> listByIndustrialsDivision(String title, String divisionTitle) {
+        if(title!=null){
+            return incidentRepo.findByIndustrialTitleContainsAndProductRegimentDivisionTitleContains(title,divisionTitle);
+        }else {
+            return incidentRepo.findByProductRegimentDivisionTitleContains(divisionTitle);
+        }
+    }
+
+    public List<Incident> listByGarantDivision(String divisionTitle) {
+        return incidentRepo.findByIsGarantTrueAndProductRegimentDivisionTitleContains(divisionTitle);
+    }
+
+    public List<Incident> listByNonGarantDivision(String divisionTitle) {
+        return incidentRepo.findByIsGarantFalseAndProductRegimentDivisionTitleContains(divisionTitle);
+    }
+
+    public List<Incident> listByProductsDateDivision(String title, String divisionTitle) {
+        if(title!=null){
+            return incidentRepo.findByProductModelOfTechnicalTitleContainsAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(title, dateBefore, divisionTitle);
+        }else {
+            return incidentRepo.findByDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(dateBefore, divisionTitle);
+        }
+    }
+
+    public List<Incident> listByIndustrialsDateDivision(String title, String divisionTitle) {
+        if(title!=null){
+            return incidentRepo.findByIndustrialTitleContainsAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(title, dateBefore, divisionTitle);
+        }else {
+            return incidentRepo.findByDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(dateBefore, divisionTitle);
+        }
+    }
+
+    public List<Incident> listByGarantDateDivision(String divisionTitle) {
+        return incidentRepo.findByIsGarantTrueAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(dateBefore, divisionTitle);
+
+    }
+
+    public List<Incident> listByNonGarantDateDivision(String divisionTitle) {
+        return incidentRepo.findByIsGarantFalseAndDateOfIncidentBeforeAndProductRegimentDivisionTitleContains(dateBefore, divisionTitle);
+    }
 }

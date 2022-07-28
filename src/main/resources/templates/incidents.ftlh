@@ -22,8 +22,8 @@
                     <th>${incident.dateOfIncident}</th>
                     <th>${incident.industrial.title}</th>
                     <th>${incident.document}</th>
-                    <th><a href="/incident/edit/${incident.id}">Редактировние</a></th>
-                    <th><a href="/incident/delete/${incident.id}">Удаление</a></th>
+                    <th><a href="/incidents/edit/${incident.id}">Редактировние</a></th>
+                    <th><a href="/incidents/delete/${incident.id}">Удаление</a></th>
                 </tr>
                 <#else>
                 <h3>Неисправностей нет</h3>

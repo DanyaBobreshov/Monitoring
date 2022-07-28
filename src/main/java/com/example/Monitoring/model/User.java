@@ -23,6 +23,7 @@ public class User implements UserDetails {
     @Column(unique = true, updatable = false)
     private String email;
     private String name;
+    private String divisionTitle;
 
     private boolean active;
     @Column(length=1000)
